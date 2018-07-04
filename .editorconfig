@@ -11,6 +11,16 @@ trim_trailing_whitespace = true
 [*.vue]
 indent_size = 4
 
+# Используем табы для отступов (Не указываем размер)
+[*.js]
+indent_style = tab
+#indent_style = space
+indent_size = 2
+
+[*.vue]
+indent_style = tab
+indent_size = 2
+
 [*.md]
 trim_trailing_whitespace = false
 
