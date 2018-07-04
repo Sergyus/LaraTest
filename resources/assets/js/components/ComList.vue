@@ -1,8 +1,22 @@
 <template>
     <div>
+
+        <div class="comments">
+            <div class="head">
+                <div class="arrow"><</div>
+
+                <div class="title"></div>
+            </div>
+            <div class="info">
+                <div class="votes">★ 120 Stars</div>
+                <div class="count">5151 Comments</div>
+            </div>
+        </div>
+
+
         <ul>
             <li v-for="comment in comments">
-                <div>{{comment}}</div>
+                <!--<div>{{comment}}</div>-->
                 <div>{{comment.comment}}</div>
             </li>
         </ul>
@@ -39,6 +53,8 @@
             send() {
                 let app = this;
 
+                //https://stackoverflow.com/questions/49328956/file-upload-with-vue-and-laravel
+
                 let Data = new FormData();
                 Data.append("comment", 'Mes');
                 Data.append('_method', 'PATCH');
@@ -70,6 +86,10 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+    .comments {
+        .head {
+            background-color: #000;
+        }
+    }
 </style>
