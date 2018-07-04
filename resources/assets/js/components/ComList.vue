@@ -6,7 +6,7 @@
                 <div>{{comment.comment}}</div>
             </li>
         </ul>
-        <form @submit.prevent="send()" method="POST">
+        <form @submit.prevent="add()" method="POST">
             <input type="text" v-model="newcomments.text">
             <input type="submit" value="Add">
         </form>
@@ -19,9 +19,7 @@
         data() {
             return {
                 comments: [],
-                newcomments: {
-                    text: ''
-                }
+                // newcomments: []
             }
         },
         mounted() {
@@ -36,22 +34,27 @@
                 });
         },
         methods: {
-            send() {
-                let app = this;
-
-                let Data = new FormData();
-                Data.append("comment", 'Mes');
-                Data.append('_method', 'PATCH');
-
-                //console.log(app.comments);
-                axios.post('/api/v1/comments', Data)
-                    .then((resp) => {
-                        console.log(resp);
-                    })
-                    .catch(function (resp) {
-                        alert(resp);
-                    });
-            }
+            add() {
+                console.log();
+                // let app = this;
+                //
+                // let Data = new FormData();
+                // Data.append("comment", 'Mes');
+                // Data.append('_method', 'PATCH');
+                //
+                // //console.log(app.comments);
+                // axios.post('/api/v1/comments', Data)
+                //     .then((resp) => {
+                //         console.log(resp);
+                //     })
+                //     .catch(function (resp) {
+                //         alert(resp);
+                //     });
+            },
+            deleteTodo(todo) {
+                //const todoIndex = this.todos.indexOf(todo);
+                //this.todos.splice(todoIndex, 1);
+            },
         }
         // methods: {
         //     deleteEntry(id, index) {
