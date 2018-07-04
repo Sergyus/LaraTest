@@ -1,33 +1,25 @@
-// import axios from 'axios'
-
 const state = {
 	all: [],
-	endpoint: '/api/v1/comments'
+	endpoint: '/api/v1/comments/'
 };
 
 const mutations = {
-	initComments(state, comments) {  // !!!
+	initComments(state, comments) {
 		state.all = comments
 	},
 
-	addMComment(state, comment) {
-		console.log('addMComment');
-		//state.all.push(comment)
+	add_Comment(state, comment) {
+		state.all.push(comment)
 	},
 
-	// updateTask(state, task) {
-	// 	let taskId = task.id;
-	// 	state.all.splice(state.all.findIndex(task => task.id === taskId), 1, task)
-	// },
-  //
-	// removeTask(state, task) {
-	// 	let taskId = task.id;
-	// 	state.all.splice(state.all.findIndex(task => task.id === taskId), 1)
-	// },
-  //
-	// clearTasks(state) {
-	// 	state.all = []
-	// }
+	update_Comment(state, comment) {
+		let commentId = comment.id;
+		state.all.splice(state.all.findIndex(comment => comment.id === commentId), 1, comment)
+	},
+
+	remove_Comment(state, comment_id) {
+		state.all.splice(state.all.findIndex(comment => comment.id === comment_id), 1)
+	},
 };
 
 const getters = {
@@ -52,8 +44,7 @@ const actions = {
 		return new Promise((resolve, reject) => {
 			axios.post(state.endpoint, form)
 				.then(({data}) => {
-					commit('addMComment', data);
-					console.log('actions addComment');
+					commit('add_Comment', data);
 					resolve()
 				})
 				.catch(error => {
@@ -62,44 +53,31 @@ const actions = {
 		})
 	},
 
-	// updateTask({commit}, {task, form}) {
-	// 	return new Promise((resolve, reject) => {
-	// 		axios.patch(state.endpoint + task.id, form)
-	// 			.then(({data}) => {
-	// 				commit('updateTask', data.data);
-	// 				resolve(data.data)
-	// 			})
-	// 			.catch(error => {
-	// 				reject(error)
-	// 			})
-	// 	})
-	// },
-  //
-	// removeTask({commit}, task) {
-	// 	return new Promise((resolve, reject) => {
-	// 		axios.delete(state.endpoint + task.id)
-	// 			.then(response => {
-	// 				commit('removeTask', task);
-	// 				resolve()
-	// 			})
-	// 			.catch(error => {
-	// 				reject(error)
-	// 			})
-	// 	})
-	// },
-  //
-	// deleteTasks({commit, getters}) {
-	// 	return new Promise((resolve, reject) => {
-	// 		axios.delete(state.endpoint)
-	// 			.then(response => {
-	// 				getters.completedTasks.forEach(task => commit('removeTask', task))
-	// 				resolve()
-	// 			})
-	// 			.catch(error => {
-	// 				reject(error)
-	// 			})
-	// 	})
-	// }
+	updateComment({commit}, form) {
+		return new Promise((resolve, reject) => {
+			axios.patch(state.endpoint + form.id, form.data)
+				.then(({data}) => {
+					commit('update_Comment', data);
+					resolve(data)
+				})
+				.catch(error => {
+					reject(error)
+				})
+		})
+	},
+
+	removeComment({commit}, comment_id) {
+		return new Promise((resolve, reject) => {
+			axios.delete(state.endpoint + comment_id)
+				.then(response => {
+					commit('remove_Comment', comment_id);
+					resolve()
+				})
+				.catch(error => {
+					reject(error)
+				})
+		})
+	},
 };
 
 export default {

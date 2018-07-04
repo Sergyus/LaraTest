@@ -19,7 +19,7 @@ class CommentController extends Controller {
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function create() {
         //
@@ -34,8 +34,6 @@ class CommentController extends Controller {
      */
     public function store(Request $request) {
         $comment = Comment::create($request->all());
-
-        print_r($comment);
 
         return $comment;
     }

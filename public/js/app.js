@@ -48124,21 +48124,28 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-// import axios from 'axios'
-
 var state = {
 	all: [],
-	endpoint: '/api/v1/comments'
+	endpoint: '/api/v1/comments/'
 };
 
 var mutations = {
 	initComments: function initComments(state, comments) {
-		// !!!
 		state.all = comments;
 	},
-	addMComment: function addMComment(state, comment) {
-		console.log('addMComment');
-		//state.all.push(comment)
+	add_Comment: function add_Comment(state, comment) {
+		state.all.push(comment);
+	},
+	update_Comment: function update_Comment(state, comment) {
+		var commentId = comment.id;
+		state.all.splice(state.all.findIndex(function (comment) {
+			return comment.id === commentId;
+		}), 1, comment);
+	},
+	remove_Comment: function remove_Comment(state, comment_id) {
+		state.all.splice(state.all.findIndex(function (comment) {
+			return comment.id === comment_id;
+		}), 1);
 	}
 };
 
@@ -48170,8 +48177,33 @@ var actions = {
 			axios.post(state.endpoint, form).then(function (_ref4) {
 				var data = _ref4.data;
 
-				commit('addMComment', data);
-				console.log('actions addComment');
+				commit('add_Comment', data);
+				resolve();
+			}).catch(function (error) {
+				reject(error);
+			});
+		});
+	},
+	updateComment: function updateComment(_ref5, form) {
+		var commit = _ref5.commit;
+
+		return new Promise(function (resolve, reject) {
+			axios.patch(state.endpoint + form.id, form.data).then(function (_ref6) {
+				var data = _ref6.data;
+
+				commit('update_Comment', data);
+				resolve(data);
+			}).catch(function (error) {
+				reject(error);
+			});
+		});
+	},
+	removeComment: function removeComment(_ref7, comment_id) {
+		var commit = _ref7.commit;
+
+		return new Promise(function (resolve, reject) {
+			axios.delete(state.endpoint + comment_id).then(function (response) {
+				commit('remove_Comment', comment_id);
 				resolve();
 			}).catch(function (error) {
 				reject(error);
@@ -48206,7 +48238,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-0dd3cd18"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -48249,13 +48281,13 @@ var content = __webpack_require__(44);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(46)("335091eb", content, false, {});
+var update = __webpack_require__(46)("1daf37c2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0dd3cd18\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ComList.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0dd3cd18\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ComList.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0dd3cd18\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ComList.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0dd3cd18\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ComList.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -48273,7 +48305,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.comments .head {\n  background-color: #000;\n}\n", ""]);
 
 // exports
 
@@ -48754,6 +48786,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -48761,9 +48795,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	data: function data() {
 		return {
 			newComment: {
+				comment: '',
 				users_id: 1,
 				reply_id: 1,
 				votes: 1
+			},
+			edit: {
+				status: false,
+				id: null
 			}
 		};
 	},
@@ -48774,13 +48813,42 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		this.initComments();
 	},
 
-	methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(['fetchComments', 'addComment']), {
+	methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(['fetchComments', 'addComment', 'updateComment', 'removeComment']), {
+		_sendForm: function _sendForm() {
+			if (this.edit.status) {
+				return this._saveComment();
+			}
+			return this._addComment();
+		},
 		initComments: function initComments() {
 			this.fetchComments();
 		},
 		_addComment: function _addComment() {
-			this.addComment(this.newComment);
-			console.log('click');
+			var _this = this;
+
+			this.addComment(this.newComment).then(function () {
+				_this.newComment.comment = '';
+			});
+		},
+		_delComment: function _delComment(id) {
+			this.removeComment(id);
+		},
+		_editComment: function _editComment(comment) {
+			this.edit.status = true;
+			this.edit.id = comment.id;
+			this.newComment.comment = comment.comment;
+		},
+		_saveComment: function _saveComment() {
+			var _this2 = this;
+
+			this.updateComment({
+				data: _extends({}, this.newComment),
+				id: this.edit.id
+			}).then(function () {
+				_this2.edit.status = false;
+				_this2.edit.id = null;
+				_this2.newComment.comment = '';
+			});
 		}
 	})
 });
@@ -48800,7 +48868,31 @@ var render = function() {
         return _c("li", [
           _c("span", [_vm._v("Id: " + _vm._s(comment.id) + " -")]),
           _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(comment.comment))])
+          _c("span", [_vm._v(_vm._s(comment.comment))]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  _vm._delComment(comment.id)
+                }
+              }
+            },
+            [_vm._v("DEL")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  _vm._editComment(comment)
+                }
+              }
+            },
+            [_vm._v("EDIT")]
+          )
         ])
       })
     ),
@@ -48811,7 +48903,7 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            _vm._addComment()
+            _vm._sendForm()
           }
         }
       },
@@ -48825,7 +48917,7 @@ var render = function() {
               expression: "newComment.comment"
             }
           ],
-          attrs: { type: "text" },
+          attrs: { type: "text", required: "" },
           domProps: { value: _vm.newComment.comment },
           on: {
             input: function($event) {
@@ -48837,7 +48929,7 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _c("input", { attrs: { type: "submit", value: "Add" } })
+        _c("input", { attrs: { type: "submit", value: "Add Comment" } })
       ]
     )
   ])
