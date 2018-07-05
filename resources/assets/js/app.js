@@ -14,7 +14,7 @@ import store from './store/index'
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('com-list', require('./components/ComList'));
+Vue.component('com-list', require('./components/ComList/ComList'));
 
 const app = new Vue({
     store,

@@ -1,5 +1,23 @@
 <template>
 	<div>
+
+		<div class="comments">
+			<div class="head">
+				<div class="arrow">
+					<div class="el">></div>
+				</div>
+				<div class="text">
+					<div class="title">
+						Comments
+					</div>
+					<div class="description">
+						Why do you love this Vizy?
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<ul>
 			<li v-for="comment in allComments">
 				<span>Id: {{comment.id}} -</span>
@@ -17,6 +35,7 @@
 
 <script>
 	import {mapActions, mapGetters} from 'vuex';
+	import './ComList.scss'
 	export default {
 		name: "ComList",
 		data() {
@@ -28,7 +47,7 @@
 					votes: 1,
 				},
 				edit: {
-					status:  false,
+					status: false,
 					id: null
 				},
 			}
@@ -88,11 +107,3 @@
 		}
 	}
 </script>
-
-<style lang="scss">
-    .comments {
-        .head {
-            background-color: #000;
-        }
-    }
-</style>
