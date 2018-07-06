@@ -25778,7 +25778,7 @@ var index_esm = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(51);
+module.exports = __webpack_require__(53);
 
 
 /***/ }),
@@ -48421,6 +48421,34 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -48437,10 +48465,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			edit: {
 				status: false,
 				id: null
-			}
+			},
+			open: true
 		};
 	},
-	mounted: function mounted() {},
 
 	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(['allComments'])),
 	created: function created() {
@@ -48471,6 +48499,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			this.edit.status = true;
 			this.edit.id = comment.id;
 			this.newComment.comment = comment.comment;
+			this.setFocus();
 		},
 		_saveComment: function _saveComment() {
 			var _this2 = this;
@@ -48483,6 +48512,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				_this2.edit.id = null;
 				_this2.newComment.comment = '';
 			});
+		},
+		setFocus: function setFocus() {
+			this.$refs.btn.focus();
 		}
 	})
 });
@@ -48527,7 +48559,7 @@ exports = module.exports = __webpack_require__(47)(false);
 
 
 // module
-exports.push([module.i, ".comments {\n  max-width: 500px; }\n  .comments .head {\n    background-color: #000;\n    padding: 20px 25px;\n    display: flex;\n    align-items: center; }\n    .comments .head .arrow {\n      width: 50px;\n      height: 50px;\n      background-color: #040505;\n      color: #fff;\n      border: 2px solid #fff;\n      border-radius: 50%;\n      margin-right: 25px; }\n    .comments .head .text {\n      color: #fff; }\n      .comments .head .text .title {\n        font-size: 28px;\n        font-weight: bold; }\n", ""]);
+exports.push([module.i, ".comments {\n  max-width: 450px;\n  margin: 0 auto;\n  overflow: hidden; }\n  .comments .head {\n    background-color: #000;\n    padding: 15px;\n    display: flex;\n    align-items: center;\n    z-index: 10;\n    position: relative; }\n    .comments .head .arrow {\n      cursor: pointer;\n      width: 50px;\n      height: 50px;\n      background-color: #242629;\n      color: #fff;\n      border: 2px solid #fff;\n      border-radius: 50%;\n      margin-right: 15px;\n      display: flex;\n      align-items: center;\n      justify-content: center; }\n      .comments .head .arrow img {\n        margin-top: 3px; }\n    .comments .head .text {\n      color: #fff; }\n      .comments .head .text .title {\n        font-size: 28px;\n        font-weight: bold;\n        line-height: normal; }\n  .comments .body {\n    width: 100%;\n    z-index: 0;\n    animation-duration: .8s;\n    animation-fill-mode: both;\n    display: none; }\n    .comments .body.open {\n      animation-name: slideInDown;\n      display: block; }\n    .comments .body.close {\n      animation-name: slideOutUp;\n      display: block; }\n  .comments .info {\n    display: flex;\n    align-items: center; }\n    .comments .info .col {\n      text-align: center;\n      padding: 12px;\n      background-color: #fff;\n      border: 1px solid #ccc;\n      font-family: sans-serif; }\n      .comments .info .col span {\n        vertical-align: text-top;\n        font-size: 15px; }\n    .comments .info .stars img {\n      width: 25px;\n      margin-right: 5px; }\n    .comments .info .stars span {\n      color: #76b5dd; }\n    .comments .info .count img {\n      width: 25px;\n      position: relative;\n      top: 3px;\n      margin-right: 8px; }\n  .comments .content {\n    background-color: #fff;\n    border: 1px solid #ccc;\n    height: 470px;\n    padding: 0 15px;\n    overflow-y: scroll;\n    position: relative; }\n    .comments .content::-webkit-scrollbar {\n      width: 8px;\n      background-color: rgba(84, 84, 84, 0.13); }\n    .comments .content::-webkit-scrollbar-thumb {\n      background-color: #999; }\n    .comments .content ul {\n      list-style-type: none;\n      padding: 0;\n      position: relative; }\n      .comments .content ul li {\n        border-top: 1px solid #ccc;\n        padding: 15px 0 15px 55px;\n        min-height: 60px; }\n        .comments .content ul li:first-child {\n          border: none; }\n        .comments .content ul li img {\n          position: absolute;\n          left: 0; }\n        .comments .content ul li .deteil {\n          display: flex;\n          justify-content: space-between;\n          margin-bottom: 8px; }\n          .comments .content ul li .deteil .name {\n            font-weight: bold;\n            font-size: 16px;\n            line-height: normal;\n            min-width: 215px; }\n          .comments .content ul li .deteil .date {\n            color: #838383; }\n        .comments .content ul li .comment {\n          color: #838383; }\n          .comments .content ul li .comment .del {\n            color: #dc3545; }\n  .comments .form {\n    position: relative; }\n    .comments .form input[type=text] {\n      width: 100%;\n      padding: 15px;\n      border: 1px solid #ccc;\n      font-weight: bold; }\n    .comments .form input[type=submit] {\n      position: absolute;\n      right: 15px;\n      top: 15px;\n      padding: 0 15px; }\n\n@-webkit-keyframes slideOutUp {\n  from {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1; }\n  to {\n    visibility: hidden;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n    opacity: 0; } }\n\n@keyframes slideInDown {\n  from {\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n    visibility: visible;\n    opacity: 0; }\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1; } }\n", ""]);
 
 // exports
 
@@ -49077,78 +49109,177 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "ul",
-      _vm._l(_vm.allComments, function(comment) {
-        return _c("li", [
-          _c("span", [_vm._v("Id: " + _vm._s(comment.id) + " -")]),
-          _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(comment.comment))]),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-6" }, [
+        _c("div", { staticClass: "comments" }, [
+          _c("div", { staticClass: "head" }, [
+            _c(
+              "div",
+              {
+                staticClass: "arrow",
+                on: {
+                  click: function($event) {
+                    _vm.open = !_vm.open
+                  }
+                }
+              },
+              [
+                _c("img", {
+                  attrs: { src: __webpack_require__(51), alt: "pic" }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(0)
+          ]),
           _vm._v(" "),
           _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  _vm._delComment(comment.id)
-                }
-              }
-            },
-            [_vm._v("DEL")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  _vm._editComment(comment)
-                }
-              }
-            },
-            [_vm._v("EDIT")]
+            "div",
+            { staticClass: "body", class: _vm.open ? "open" : "close" },
+            [
+              _c("div", { staticClass: "info" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "count col" }, [
+                  _c("img", {
+                    attrs: {
+                      src: __webpack_require__(56),
+                      alt: "pic"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [
+                    _vm._v(_vm._s(_vm.allComments.length) + " Comments")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "content" }, [
+                _c(
+                  "ul",
+                  _vm._l(_vm.allComments, function(comment) {
+                    return _c("li", [
+                      _c("img", {
+                        attrs: {
+                          src: __webpack_require__(55),
+                          alt: "avatar"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "deteil" }, [
+                        _c("div", { staticClass: "name" }, [
+                          _vm._v("Jemes Anderson")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "date" }, [
+                          _vm._v(_vm._s(comment.updated_at))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "comment" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\t\t" +
+                            _vm._s(comment.comment) +
+                            "\n\t\t\t\t\t\t\t\t\t"
+                        ),
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm._editComment(comment)
+                              }
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "del",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm._delComment(comment.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Del")]
+                        )
+                      ])
+                    ])
+                  })
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  staticClass: "form",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm._sendForm()
+                    }
+                  }
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.newComment.comment,
+                        expression: "newComment.comment"
+                      }
+                    ],
+                    ref: "btn",
+                    attrs: {
+                      type: "text",
+                      required: "",
+                      placeholder: "Add a comments..."
+                    },
+                    domProps: { value: _vm.newComment.comment },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.newComment, "comment", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "submit" },
+                    domProps: { value: _vm.edit.status ? "Save" : "Post" }
+                  })
+                ]
+              )
+            ]
           )
         ])
-      })
-    ),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            _vm._sendForm()
-          }
-        }
-      },
-      [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.newComment.comment,
-              expression: "newComment.comment"
-            }
-          ],
-          attrs: { type: "text", required: "" },
-          domProps: { value: _vm.newComment.comment },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.newComment, "comment", $event.target.value)
-            }
-          }
-        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-6" }, [
+        _c("p", [_vm._v("Log")]),
         _vm._v(" "),
-        _c("input", { attrs: { type: "submit", value: "Add Comment" } })
-      ]
-    )
+        _c(
+          "ul",
+          _vm._l(_vm.allComments, function(comment) {
+            return _c("li", [
+              _c("span", [_vm._v("Id: " + _vm._s(comment) + " -")]),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(comment.comment))])
+            ])
+          })
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -49156,22 +49287,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "comments" }, [
-      _c("div", { staticClass: "head" }, [
-        _c("div", { staticClass: "arrow" }, [
-          _c("div", { staticClass: "el" }, [_vm._v(">")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "text" }, [
-          _c("div", { staticClass: "title" }, [
-            _vm._v("\n\t\t\t\t\tComments\n\t\t\t\t")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "description" }, [
-            _vm._v("\n\t\t\t\t\tWhy do you love this Vizy?\n\t\t\t\t")
-          ])
-        ])
+    return _c("div", { staticClass: "text" }, [
+      _c("div", { staticClass: "title" }, [_vm._v("Comments")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "description" }, [
+        _vm._v("Why do you love this Vizy?")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "stars col" }, [
+      _c("img", {
+        attrs: { src: __webpack_require__(52), alt: "pic" }
+      }),
+      _vm._v(" "),
+      _c("span", [_vm._v("120 Stars")])
     ])
   }
 ]
@@ -49188,7 +49321,32 @@ if (false) {
 /* 51 */
 /***/ (function(module, exports) {
 
+module.exports = "/images/arrow.svg?45201d381aab40ed9c66204016c3ce8a";
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/star.svg?948dedb3d2d135351c261626641a489a";
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports) {
+
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 54 */,
+/* 55 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/user_avatar.jpeg?179146781f26f362c58f3f37ff741aa2";
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/add-comment-512.png?0647126b42e013d61f83c76a384f3c91";
 
 /***/ })
 /******/ ]);
