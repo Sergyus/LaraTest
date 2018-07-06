@@ -25778,7 +25778,7 @@ var index_esm = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(53);
+module.exports = __webpack_require__(51);
 
 
 /***/ }),
@@ -49125,7 +49125,7 @@ var render = function() {
               },
               [
                 _c("img", {
-                  attrs: { src: __webpack_require__(51), alt: "pic" }
+                  attrs: { src: __webpack_require__(53), alt: "pic" }
                 })
               ]
             ),
@@ -49143,7 +49143,7 @@ var render = function() {
                 _c("div", { staticClass: "count col" }, [
                   _c("img", {
                     attrs: {
-                      src: __webpack_require__(56),
+                      src: __webpack_require__(54),
                       alt: "pic"
                     }
                   }),
@@ -49301,7 +49301,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "stars col" }, [
       _c("img", {
-        attrs: { src: __webpack_require__(52), alt: "pic" }
+        attrs: { src: __webpack_require__(56), alt: "pic" }
       }),
       _vm._v(" "),
       _c("span", [_vm._v("120 Stars")])
@@ -49321,22 +49321,22 @@ if (false) {
 /* 51 */
 /***/ (function(module, exports) {
 
-module.exports = "/images/arrow.svg?45201d381aab40ed9c66204016c3ce8a";
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/star.svg?948dedb3d2d135351c261626641a489a";
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports) {
-
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 54 */,
+/* 52 */,
+/* 53 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/arrow.svg?45201d381aab40ed9c66204016c3ce8a";
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/add-comment-512.png?0647126b42e013d61f83c76a384f3c91";
+
+/***/ }),
 /* 55 */
 /***/ (function(module, exports) {
 
@@ -49346,7 +49346,7 @@ module.exports = "/images/user_avatar.jpeg?179146781f26f362c58f3f37ff741aa2";
 /* 56 */
 /***/ (function(module, exports) {
 
-module.exports = "/images/add-comment-512.png?0647126b42e013d61f83c76a384f3c91";
+module.exports = "/images/star.svg?948dedb3d2d135351c261626641a489a";
 
 /***/ })
 /******/ ]);
